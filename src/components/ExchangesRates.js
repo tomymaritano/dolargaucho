@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/divisasAxiosConfig';
-import { Container, Typography, Grid, Paper, Box, Avatar } from '@mui/material';
+import { Typography, Grid, Box, Avatar } from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 const ExchangeRates = () => {
   const [dolares, setDolares] = useState([]);
-  const [cotizaciones, setCotizaciones] = useState([]);
+  const [ setCotizaciones] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {

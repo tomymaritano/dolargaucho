@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import newsAxiosInstance from '../api/newsAxiosConfig';
-import { Box, Container, Typography, Grid, Card, CardContent, CardMedia, Link, Tabs, Tab } from '@mui/material';
+import { Container, Typography, Grid, Card, CardContent, CardMedia, Link, Tabs, Tab } from '@mui/material';
 
 const categories = ['business', 'technology', 'economy', 'markets', 'investing'];
 

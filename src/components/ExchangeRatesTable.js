@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../api/axiosConfig';
-import { Container, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Box } from '@mui/material';
 
 const ExchangeRatesTable = () => {
   const [dolares, setDolares] = useState([]);
-  const [cotizaciones, setCotizaciones] = useState([]);
+  const [ setCotizaciones] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
