@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound';
 import Layout from './components/Layout';
 
 // Simulación de estado de autenticación
-const isAuthenticated = true; // Cambia esto según tu lógica de autenticación
+// const isAuthenticated = true; // Cambia esto según tu lógica de autenticación
 
 const AppRoutes = () => {
   return (

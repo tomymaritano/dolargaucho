@@ -7,44 +7,45 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 const ExchangeRates = () => {
   const [dolares, setDolares] = useState([]);
-  const [ setCotizaciones] = useState([]);
+  const [setCotizaciones] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const dolaresResponse = await axiosInstance.get('/dolares');
-        const cotizacionesResponse = await axiosInstance.get('/cotizaciones');
-        
-        // Transformar nombres
-        const transformedDolares = dolaresResponse.data.map(rate => {
-          if (rate.nombre === 'Contado con liquidación') {
-            return { ...rate, nombre: 'CCL' };
-          }
-          if (rate.nombre === 'Bolsa') {
-            return { ...rate, nombre: 'MEP' };
-          }
-          return rate;
-        });
 
-        const transformedCotizaciones = cotizacionesResponse.data.map(rate => {
-          if (rate.nombre === 'Contado con liquidación') {
-            return { ...rate, nombre: 'CCL' };
-          }
-          if (rate.nombre === 'Bolsa') {
-            return { ...rate, nombre: 'MEP' };
-          }
-          return rate;
-        });
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const dolaresResponse = await axiosInstance.get('/dolares');
+      const cotizacionesResponse = await axiosInstance.get('/cotizaciones');
+      
+      // Transformar nombres
+      const transformedDolares = dolaresResponse.data.map(rate => {
+        if (rate.nombre === 'Contado con liquidación') {
+          return { ...rate, nombre: 'CCL' };
+        }
+        if (rate.nombre === 'Bolsa') {
+          return { ...rate, nombre: 'MEP' };
+        }
+        return rate;
+      });
 
-        setDolares(transformedDolares);
-        setCotizaciones(transformedCotizaciones);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+      const transformedCotizaciones = cotizacionesResponse.data.map(rate => {
+        if (rate.nombre === 'Contado con liquidación') {
+          return { ...rate, nombre: 'CCL' };
+        }
+        if (rate.nombre === 'Bolsa') {
+          return { ...rate, nombre: 'MEP' };
+        }
+        return rate;
+      });
 
-    fetchData();
-  }, []);
+      setDolares(transformedDolares);
+      setCotizaciones(transformedCotizaciones);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, [setDolares, setCotizaciones]);  // Include state setter functions used in the effect
 
   const getIcon = (nombre) => {
     switch (nombre) {
