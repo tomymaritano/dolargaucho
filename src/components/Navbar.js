@@ -13,12 +13,20 @@ import RssFeedIcon from '@mui/icons-material/RssFeed';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/logo.png'; // Importa tu logo
+import logo from '../assets/images/logo.png';
 
 const pages = ['Home', 'Acerca de', 'Contacto'];
+const indicesPages = [
+  { name: 'Inflación Mensual', path: '/inflacion-mensual' },
+  { name: 'Inflación Interanual', path: '/inflacion-interanual' },
+  { name: 'Índices UVA', path: '/indices-uva' },
+  { name: 'Riesgo País', path: '/riesgo-pais' },
+  { name: 'Riesgo País (Último)', path: '/riesgo-pais-ultimo' },
+];
 
 function ResponsiveNavbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElIndices, setAnchorElIndices] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -26,6 +34,14 @@ function ResponsiveNavbar() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleOpenIndicesMenu = (event) => {
+    setAnchorElIndices(event.currentTarget);
+  };
+
+  const handleCloseIndicesMenu = () => {
+    setAnchorElIndices(null);
   };
 
   return (
@@ -87,6 +103,35 @@ function ResponsiveNavbar() {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleOpenIndicesMenu}>
+                <Typography textAlign="center">Índices</Typography>
+              </MenuItem>
+              <Menu
+                id="indices-menu"
+                anchorEl={anchorElIndices}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElIndices)}
+                onClose={handleCloseIndicesMenu}
+              >
+                {indicesPages.map((page) => (
+                  <MenuItem
+                    key={page.name}
+                    onClick={handleCloseIndicesMenu}
+                    component={Link}
+                    to={page.path}
+                  >
+                    {page.name}
+                  </MenuItem>
+                ))}
+              </Menu>
             </Menu>
           </Box>
 
@@ -98,11 +143,43 @@ function ResponsiveNavbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 component={Link}
-                to={`/${page.toLowerCase().replace(/ /g, '-')}`} // Ruta de navegación
+                to={`/${page.toLowerCase().replace(/ /g, '-')}`} 
               >
                 {page}
               </Button>
             ))}
+            <Button
+              sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={handleOpenIndicesMenu}
+            >
+              Índices
+            </Button>
+            <Menu
+              id="indices-menu"
+              anchorEl={anchorElIndices}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElIndices)}
+              onClose={handleCloseIndicesMenu}
+            >
+              {indicesPages.map((page) => (
+                <MenuItem
+                  key={page.name}
+                  onClick={handleCloseIndicesMenu}
+                  component={Link}
+                  to={page.path}
+                >
+                  {page.name}
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
 
           {/* Icons */}
