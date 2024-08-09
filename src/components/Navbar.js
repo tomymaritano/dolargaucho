@@ -12,6 +12,8 @@ import MenuItem from '@mui/material/MenuItem';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';
+import logo from '../assets/images/logo.png'; // Importa tu logo
 
 const pages = ['Home', 'Acerca de', 'Contacto'];
 
@@ -26,20 +28,31 @@ function ResponsiveNavbar() {
     setAnchorElNav(null);
   };
 
-
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: 'primary.main' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-          >
-            DolarGaucho
-          </Typography>
+          {/* Logo */}
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+            <Box
+              component="img"
+              src={logo}
+              alt="Dolar Gaucho Logo"
+              sx={{
+                height: 40,
+                mr: 2,
+              }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+            >
+              Dolar Gaucho
+            </Typography>
+          </Link>
 
+          {/* Mobile Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -76,34 +89,23 @@ function ResponsiveNavbar() {
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+
+          {/* Desktop Menu */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                component={Link}
+                to={`/${page.toLowerCase().replace(/ /g, '-')}`} // Ruta de navegación
               >
                 {page}
               </Button>
             ))}
           </Box>
 
+          {/* Icons */}
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
             <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
               <RssFeedIcon />
@@ -114,7 +116,6 @@ function ResponsiveNavbar() {
             <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
               <LinkedInIcon />
             </IconButton>
-            
           </Box>
         </Toolbar>
       </Container>
