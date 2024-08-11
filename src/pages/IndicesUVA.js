@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, CircularProgress } from '@mui/material';
-import argentinaApiAxiosConfig from '../api/argentinaApiAxiosConfig';
+import axiosInstance from '../api/argentinaApiAxiosConfig';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale } from 'chart.js';
+import { Container, Box, Typography, CircularProgress, TextField } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+
+// Registrar componentes y plugins de Chart.js
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale);
 
 const IndicesUVA = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedDate, setSelectedDate] = useState([dayjs().startOf('year'), dayjs()]);
+  const [chartData, setChartData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await argentinaApiAxiosConfig.get('/finanzas/indices/uva');
+        const response = await axiosInstance.get('/finanzas/indices/uva');
         setData(response.data);
         setLoading(false);
       } catch (error) {
@@ -21,25 +32,102 @@ const IndicesUVA = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const filteredData = data.filter(item => {
+      const itemDate = dayjs(item.fecha);
+      return itemDate.isBetween(selectedDate[0], selectedDate[1], null, '[]');
+    });
+
+    const labels = filteredData.map(item => dayjs(item.fecha).format('DD/MM/YYYY'));
+    const uvaValues = filteredData.map(item => item.valor);
+
+    setChartData({
+      labels,
+      datasets: [
+        {
+          label: 'Índice UVA',
+          data: uvaValues,
+          fill: false,
+          backgroundColor: 'rgba(75,192,192,0.2)',
+          borderColor: 'rgba(75,192,192,1)',
+          borderWidth: 1,
+          tension: 0.4,
+          pointRadius: 2,
+        },
+      ],
+    });
+  }, [data, selectedDate]);
+
+  const handleDateChange = (newDate) => {
+    setSelectedDate([newDate.startOf('month'), newDate.endOf('month')]);
+  };
+
   return (
-    <Container maxWidth="xl">
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" component="h2" gutterBottom>
-          Índices UVA
-        </Typography>
-        {loading ? (
-          <CircularProgress />
-        ) : (
-          <Box>
-            {data.map((item, index) => (
-              <Typography key={index} variant="body1">
-                Fecha: {item.fecha} - Valor UVA: {item.valor}
-              </Typography>
-            ))}
-          </Box>
-        )}
-      </Box>
-    </Container>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Container maxWidth="xl">
+        <Box sx={{ mb: 4 }}>
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <>
+              <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                <DatePicker
+                  label="Seleccionar Fecha"
+                  views={['year', 'month']}
+                  value={selectedDate[0]}
+                  onChange={handleDateChange}
+                  renderInput={(params) => <TextField {...params} fullWidth />}
+                />
+              </Box>
+              <Box sx={{ width: '100%', height: 400 }}>
+                {chartData.labels ? (
+                  <Line
+                    data={chartData}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      scales: {
+                        x: {
+                          title: {
+                            display: true,
+                            text: 'Fecha',
+                          },
+                        },
+                        y: {
+                          title: {
+                            display: true,
+                            text: 'Valor UVA',
+                          },
+                        },
+                      },
+                      plugins: {
+                        zoom: {
+                          pan: {
+                            enabled: true,
+                            mode: 'xy',
+                          },
+                          zoom: {
+                            wheel: {
+                              enabled: true,
+                            },
+                            pinch: {
+                              enabled: true,
+                            },
+                            mode: 'xy',
+                          },
+                        },
+                      },
+                    }}
+                  />
+                ) : (
+                  <Typography variant="body1">No hay datos para la fecha seleccionada.</Typography>
+                )}
+              </Box>
+            </>
+          )}
+        </Box>
+      </Container>
+    </LocalizationProvider>
   );
 };
 

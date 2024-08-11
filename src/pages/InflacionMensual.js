@@ -57,9 +57,6 @@ const InflacionMensualChart = () => {
   return (
     <Container maxWidth="xl">
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" component="h2" gutterBottom>
-          Inflación Mensual
-        </Typography>
         <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
           <FormControl variant="outlined" sx={{ minWidth: 120 }}>
             <InputLabel>Año</InputLabel>

@@ -59,7 +59,7 @@ useEffect(() => {
   };
 
   return (
-    <Box>
+    <Box maxWidth={'xl'}>
       <Typography variant='h2' gutterBottom> Cotizaciones</Typography>
       <Grid container spacing={3}>
         {dolares.map((rate, index) => (

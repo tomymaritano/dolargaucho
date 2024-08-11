@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
@@ -14,7 +14,8 @@ import Layout from './components/Layout';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout><Home /></Layout>} />
+      <Route path="/" element={<Navigate to="/home" />} /> {/* Redirección */}
+      <Route path="/home" element={<Layout><Home /></Layout>} />
       <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
       <Route path="/profile" element={<Layout><Profile /></Layout>} />
       <Route path="/inflacion-mensual" element={<Layout><InflacionMensual /></Layout>} />

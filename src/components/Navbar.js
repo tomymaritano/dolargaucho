@@ -15,13 +15,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
-const pages = ['Home', 'Acerca de', 'Contacto'];
+const pages = ['Home'];
 const indicesPages = [
   { name: 'Inflación Mensual', path: '/inflacion-mensual' },
   { name: 'Inflación Interanual', path: '/inflacion-interanual' },
   { name: 'Índices UVA', path: '/indices-uva' },
   { name: 'Riesgo País', path: '/riesgo-pais' },
-  { name: 'Riesgo País (Último)', path: '/riesgo-pais-ultimo' },
 ];
 
 function ResponsiveNavbar() {
@@ -59,13 +58,6 @@ function ResponsiveNavbar() {
                 mr: 2,
               }}
             />
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-            >
-              Dolar Gaucho
-            </Typography>
           </Link>
 
           {/* Mobile Menu */}
