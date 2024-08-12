@@ -51,7 +51,7 @@ const HomePage = () => {
       {/* Información Financiera */}
       <Grid container spacing={0}>
         <Grid item xs={12} md={4}>
-          <Box sx={{ p: 2, textAlign: 'center', border: '1px solid gray', borderRadius: '5px'  }}>
+          <Box sx={{ p: 2, textAlign: 'center',background: '#F5F5F5' }}>
             <Typography variant="h6" color="textSecondary">Riesgo País</Typography>
             {loadingRiesgoPais ? (
               <CircularProgress />
@@ -73,15 +73,16 @@ const HomePage = () => {
           </Box>
         ) : (
           <Grid container spacing={4}>
-            {noticias.slice(0, 4).map((noticia, index) => (
+            {noticias.slice(0, 12).map((noticia, index) => (
               <Grid item xs={12} md={3} key={index}>
-                <Box sx={{ p: 2, height: '100%', display: 'flex', flexDirection: 'column',  border: '1px solid gray', borderRadius: '5px' }}>
+                <Box sx={{ p: 2, height: '100%', display: 'flex', flexDirection: 'column',background: '#F5F5F5' }}>
+                  {noticia.image}
                   <Typography variant="h6" gutterBottom>{noticia.title}</Typography>
-                  <Typography variant="body2" color="textSecondary" sx={{ flexGrow: 1 }}>
+                  <Typography variant="caption" color="textSecondary" sx={{ flexGrow: 1 }}>
                     {noticia.description}
                   </Typography>
                   <Box sx={{ mt: 2 }}>
-                    <Button size='small' variant="contained" color="primary" href={noticia.url} target="_blank" rel="noopener">
+                    <Button size='small' variant="solid" color="primary" href={noticia.url} target="_blank" rel="noopener">
                       Leer más
                     </Button>
                   </Box>
