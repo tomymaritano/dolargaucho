@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Box, Typography, CircularProgress, FormControl, InputLabel, Select, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Container, Box, Typography, CircularProgress, FormControl, InputLabel, Select, MenuItem, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import argentinaApiAxiosConfig from '../api/argentinaApiAxiosConfig';
 import * as Icons from 'react-cryptocoins'; // Importa todos los íconos disponibles
 

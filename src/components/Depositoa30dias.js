@@ -9,7 +9,6 @@ import argentinaApiAxiosConfig from '../api/argentinaApiAxiosConfig';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, TimeScale, zoomPlugin);
 
 const TasasDepositos30Dias = () => {
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [chartInstance, setChartInstance] = useState(null);
   const [chartData, setChartData] = useState({});
@@ -22,8 +21,6 @@ const TasasDepositos30Dias = () => {
 
         // Ordenar los datos por fecha ascendente
         const sortedData = rawData.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
-
-        setData(sortedData);
 
         const labels = sortedData.map(item => item.fecha);
         const valores = sortedData.map(item => item.valor);
