@@ -20,26 +20,27 @@ const HomePage = () => {
       }
     };
 
-    const fetchNoticias = async () => {
-      try {
-        const response = await axios.get(
-          'https://newsapi.org/v2/everything',
-          {
-            params: {
-              q: 'finanzas argentina',
-              language: 'es',
-              sortBy: 'publishedAt',
-              apiKey: 'e0b74c362e164eda95da7698e1d0bcee',
-            },
-          }
-        );
-        setNoticias(response.data.articles);
-        setLoadingNoticias(false);
-      } catch (error) {
-        console.error('Error al obtener las noticias financieras:', error);
-        setLoadingNoticias(false);
+const fetchNoticias = async () => {
+  try {
+    const response = await axios.get(
+      'https://newsapi.org/v2/everything',
+      {
+        params: {
+          q: 'finanzas argentina',
+          language: 'es',
+          sortBy: 'publishedAt',
+          apiKey: process.env.REACT_APP_NEWS_API_KEY, // Use the key from .env
+        },
       }
-    };
+    );
+    setNoticias(response.data.articles);
+    setLoadingNoticias(false);
+  } catch (error) {
+    console.error('Error al obtener las noticias financieras:', error);
+    setLoadingNoticias(false);
+  }
+};
+
 
     fetchRiesgoPais();
     fetchNoticias();
