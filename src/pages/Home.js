@@ -47,6 +47,7 @@ const HomePage = () => {
 
   return (
     <Container maxWidth="xl">
+
       {/* Información Financiera */}
       <Grid container spacing={0}>
         <Grid item xs={12} md={4}>

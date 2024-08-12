@@ -3,6 +3,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppRoutes from './routes';
 import theme from './theme';
+import InstallPrompt from './components/InstallPrompt';
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
       <CssBaseline />
       <Router>
         <AppRoutes />
+        <InstallPrompt />
       </Router>
     </ThemeProvider>
   );
