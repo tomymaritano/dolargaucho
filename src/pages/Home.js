@@ -51,12 +51,12 @@ const HomePage = () => {
       {/* Información Financiera */}
       <Grid container spacing={0}>
         <Grid item xs={12} md={4}>
-          <Box sx={{ p: 2, textAlign: 'center',background: '#F5F5F5' }}>
+          <Box sx={{ p: 2, textAlign: 'center', border: '1px solid gray', borderRadius: '5px' }}>
             <Typography variant="h6" color="textSecondary">Riesgo País</Typography>
             {loadingRiesgoPais ? (
               <CircularProgress />
             ) : (
-              <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
+              <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#FF2626' }}>
                 {riesgoPais !== null ? riesgoPais : 'No disponible'}
               </Typography>
             )}
