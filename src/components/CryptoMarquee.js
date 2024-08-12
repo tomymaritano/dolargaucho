@@ -30,25 +30,25 @@ const CryptoMarquee = () => {
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: 'white', padding: 1 }}>
-      <Marquee gradient={false} speed={40}>
+    <Box sx={{ backgroundColor: '#f0f0f0', padding: '10px 0' }}>
+      <Marquee gradient={false} speed={40} pauseOnHover>
         {cryptoData.map((coin) => (
-          <Box key={coin.id} sx={{ display: 'flex', alignItems: 'center', marginRight: 4 }}>
-            <img src={coin.image} alt={coin.name} width="24" height="24" style={{ marginRight: 8 }} />
-            <Typography variant="body2" sx={{ fontWeight: 'bold', marginRight: 2 }}>
+          <Box key={coin.id} sx={{ display: 'flex', alignItems: 'center', marginRight: 2 }}>
+            <img src={coin.image} alt={coin.name} width="20" height="20" style={{ marginRight: 8 }} />
+            <Typography variant="body2" sx={{ fontWeight: 'bold', marginRight: 1 }}>
               {coin.name} (${coin.current_price.toFixed(2)})
             </Typography>
             {coin.price_change_percentage_24h >= 0 ? (
-              <Box sx={{ display: 'flex', alignItems: 'center', color: 'green' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', color: 'green', marginLeft: 1 }}>
                 <ArrowUpwardIcon fontSize="small" />
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ fontSize: '0.875rem' }}>
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </Typography>
               </Box>
             ) : (
-              <Box sx={{ display: 'flex', alignItems: 'center', color: 'red' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', color: 'red', marginLeft: 1 }}>
                 <ArrowDownwardIcon fontSize="small" />
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ fontSize: '0.875rem' }}>
                   {coin.price_change_percentage_24h.toFixed(2)}%
                 </Typography>
               </Box>
