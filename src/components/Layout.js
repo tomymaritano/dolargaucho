@@ -29,6 +29,9 @@ const Layout = ({ children }) => {
                 return 'Riesgo País (Último)';
             case '/tasas-plazo-fijo':
                 return 'Tasas Plazo Fijo';
+
+            case '/tasas-30-dias':
+                return 'Depositos a 30 Dias';
             default:
                 return 'Página no encontrada';
         }

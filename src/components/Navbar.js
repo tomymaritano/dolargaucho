@@ -23,11 +23,14 @@ const indicesPages = [
   { name: 'Riesgo País', path: '/riesgo-pais' },
 ];
 const tasasPages = [
-  {name: 'Tasas Plazo Fijo', path: '/tasas-plazo-fijo'}]
+  { name: 'Tasas Plazo Fijo', path: '/tasas-plazo-fijo' },
+  { name: 'Tasas a 30 Días', path: '/tasas-30-dias' },
+];
 
 function ResponsiveNavbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElIndices, setAnchorElIndices] = React.useState(null);
+  const [anchorElTasas, setAnchorElTasas] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,6 +46,14 @@ function ResponsiveNavbar() {
 
   const handleCloseIndicesMenu = () => {
     setAnchorElIndices(null);
+  };
+
+  const handleOpenTasasMenu = (event) => {
+    setAnchorElTasas(event.currentTarget);
+  };
+
+  const handleCloseTasasMenu = () => {
+    setAnchorElTasas(null);
   };
 
   return (
@@ -126,6 +137,35 @@ function ResponsiveNavbar() {
                   </MenuItem>
                 ))}
               </Menu>
+              <MenuItem onClick={handleOpenTasasMenu}>
+                <Typography textAlign="center">Tasas</Typography>
+              </MenuItem>
+              <Menu
+                id="tasas-menu"
+                anchorEl={anchorElTasas}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElTasas)}
+                onClose={handleCloseTasasMenu}
+              >
+                {tasasPages.map((page) => (
+                  <MenuItem
+                    key={page.name}
+                    onClick={handleCloseTasasMenu}
+                    component={Link}
+                    to={page.path}
+                  >
+                    {page.name}
+                  </MenuItem>
+                ))}
+              </Menu>
             </Menu>
           </Box>
 
@@ -167,6 +207,38 @@ function ResponsiveNavbar() {
                 <MenuItem
                   key={page.name}
                   onClick={handleCloseIndicesMenu}
+                  component={Link}
+                  to={page.path}
+                >
+                  {page.name}
+                </MenuItem>
+              ))}
+            </Menu>
+            <Button
+              sx={{ my: 2, color: 'white', display: 'block' }}
+              onClick={handleOpenTasasMenu}
+            >
+              Tasas
+            </Button>
+            <Menu
+              id="tasas-menu"
+              anchorEl={anchorElTasas}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElTasas)}
+              onClose={handleCloseTasasMenu}
+            >
+              {tasasPages.map((page) => (
+                <MenuItem
+                  key={page.name}
+                  onClick={handleCloseTasasMenu}
                   component={Link}
                   to={page.path}
                 >

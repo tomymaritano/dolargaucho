@@ -12,6 +12,8 @@ import NotFound from './pages/NotFound';
 import Layout from './components/Layout';
 import TasasPlazoFijo from './components/TasasPlazoFijo';
 import TasasDepositos30Dias from './components/Depositoa30dias';
+import RendimientosEntidades from './pages/RendimientosEntidades';
+import RentaVariable from './pages/RentaVariable';
 
 const AppRoutes = () => {
   return (
@@ -26,7 +28,9 @@ const AppRoutes = () => {
       <Route path="/riesgo-pais" element={<Layout><RiesgoPais /></Layout>} />
       <Route path="/riesgo-pais-ultimo" element={<Layout><RiesgoPaisUltimo /></Layout>} />
       <Route path="/tasas-plazo-fijo" element={<Layout><TasasPlazoFijo /></Layout>} />
-       <Route path="/tasas-deposito-dias" element={<Layout><TasasDepositos30Dias /></Layout>} />
+       <Route path="/tasas-30-dias" element={<Layout><TasasDepositos30Dias /></Layout>} />
+       <Route path="/rendimientos-entidades" element={<Layout><RendimientosEntidades /></Layout>} />
+       <Route path="/renta-variable" element={<Layout><RentaVariable /></Layout>} />
       <Route path="*" element={<Layout><NotFound /></Layout>} />
     </Routes>
   );
