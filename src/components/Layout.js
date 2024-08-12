@@ -27,6 +27,8 @@ const Layout = ({ children }) => {
                 return 'Riesgo País';
             case '/riesgo-pais-ultimo':
                 return 'Riesgo País (Último)';
+            case '/tasas-plazo-fijo':
+                return 'Tasas Plazo Fijo';
             default:
                 return 'Página no encontrada';
         }

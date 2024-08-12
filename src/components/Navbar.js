@@ -22,6 +22,8 @@ const indicesPages = [
   { name: 'Índices UVA', path: '/indices-uva' },
   { name: 'Riesgo País', path: '/riesgo-pais' },
 ];
+const tasasPages = [
+  {name: 'Tasas Plazo Fijo', path: '/tasas-plazo-fijo'}]
 
 function ResponsiveNavbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

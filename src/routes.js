@@ -10,6 +10,8 @@ import RiesgoPais from './pages/RiesgoPais';
 import RiesgoPaisUltimo from './pages/RiesgoPaisUltimo';
 import NotFound from './pages/NotFound';
 import Layout from './components/Layout';
+import TasasPlazoFijo from './components/TasasPlazoFijo';
+import TasasDepositos30Dias from './components/Depositoa30dias';
 
 const AppRoutes = () => {
   return (
@@ -23,6 +25,8 @@ const AppRoutes = () => {
       <Route path="/indices-uva" element={<Layout><IndicesUVA /></Layout>} />
       <Route path="/riesgo-pais" element={<Layout><RiesgoPais /></Layout>} />
       <Route path="/riesgo-pais-ultimo" element={<Layout><RiesgoPaisUltimo /></Layout>} />
+      <Route path="/tasas-plazo-fijo" element={<Layout><TasasPlazoFijo /></Layout>} />
+       <Route path="/tasas-deposito-dias" element={<Layout><TasasDepositos30Dias /></Layout>} />
       <Route path="*" element={<Layout><NotFound /></Layout>} />
     </Routes>
   );
