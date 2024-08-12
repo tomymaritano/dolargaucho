@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box, Typography, Container, Grid, CircularProgress, Button } from '@mui/material';
 
-
 const HomePage = () => {
   const [riesgoPais, setRiesgoPais] = useState(null);
-  const [dolares, setDolares] = useState([]);
   const [noticias, setNoticias] = useState([]);
   const [loadingRiesgoPais, setLoadingRiesgoPais] = useState(true);
-  const [loadingDolares, setLoadingDolares] = useState(true);
   const [loadingNoticias, setLoadingNoticias] = useState(true);
 
   useEffect(() => {
@@ -20,17 +17,6 @@ const HomePage = () => {
       } catch (error) {
         console.error('Error al obtener el Riesgo País:', error);
         setLoadingRiesgoPais(false);
-      }
-    };
-
-    const fetchDolares = async () => {
-      try {
-        const response = await axios.get('https://dolarapi.com/v1/dolares');
-        setDolares(response.data);
-        setLoadingDolares(false);
-      } catch (error) {
-        console.error('Error al obtener las cotizaciones del dólar:', error);
-        setLoadingDolares(false);
       }
     };
 
@@ -56,7 +42,6 @@ const HomePage = () => {
     };
 
     fetchRiesgoPais();
-    fetchDolares();
     fetchNoticias();
   }, []);
 
@@ -76,8 +61,6 @@ const HomePage = () => {
             )}
           </Box>
         </Grid>
-
-        
       </Grid>
 
       {/* Noticias Financieras */}
