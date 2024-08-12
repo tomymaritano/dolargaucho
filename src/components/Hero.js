@@ -5,7 +5,7 @@ const Hero = ({ title }) => {
   return (
     <Box sx={{ backgroundColor: 'primary.secondary', py: 8, color: 'white' }}>
       <Container maxWidth="xl">
-        <Typography variant="h2" component="h1" align="center">
+        <Typography variant="h2" component="h1" align="start">
           {title}
         </Typography>
       </Container>

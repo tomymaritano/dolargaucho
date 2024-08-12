@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
             <Hero title={getPageTitle()} />
             <ExchangeRatesMarquee />
             <Container maxWidth="xl">
-                <Box mt={8} py={4} sx={{ bgcolor: 'background.paper', borderRadius: 2, boxShadow: 0 }}>
+                <Box mt={4} py={4} sx={{ bgcolor: 'background.paper', borderRadius: 2, boxShadow: 0 }}>
                     {children}
                 </Box>
             </Container>

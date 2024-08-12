@@ -1,18 +1,10 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem } from '@mui/material';
+import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';
+import MoreIcon from '@mui/icons-material/MoreVert';
 import logo from '../assets/images/logo.png';
 
 const pages = ['Home'];
@@ -104,7 +96,7 @@ function ResponsiveNavbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={handleCloseNavMenu} component={Link} to={`/${page.toLowerCase().replace(/ /g, '-')}`}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -177,7 +169,7 @@ function ResponsiveNavbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 component={Link}
-                to={`/${page.toLowerCase().replace(/ /g, '-')}`} 
+                to={`/${page.toLowerCase().replace(/ /g, '-')}`}
               >
                 {page}
               </Button>
@@ -254,7 +246,7 @@ function ResponsiveNavbar() {
               <RssFeedIcon />
             </IconButton>
             <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
-              <CloseIcon />
+              <MoreIcon />
             </IconButton>
             <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
               <LinkedInIcon />
