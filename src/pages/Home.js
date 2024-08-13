@@ -20,13 +20,14 @@ const HomePage = () => {
               q: 'finanzas argentina',
               language: 'es',
               sortBy: 'publishedAt',
-              apiKey: 'e0b74c362e164eda95da7698e1d0bcee' // Reemplaza con tu clave de API real
+              apiKey: process.env.REACT_APP_NEWS_API_KEY // Utiliza la variable de entorno aquí
             }
           }),
           axios.get('https://dolarapi.com/v1/dolares')
         ]);
         setRiesgoPais(riesgoResponse.data.valor);
         setNoticias(noticiasResponse.data.articles);
+        
         const dolarOficial = dolarResponse.data.find(d => d.nombre === "Oficial");
         const dolarBlue = dolarResponse.data.find(d => d.nombre === "Blue");
         setPrecioDolarOficial(dolarOficial ? `Compra ${dolarOficial.compra} / Venta ${dolarOficial.venta}` : 'No disponible');
@@ -44,7 +45,7 @@ const HomePage = () => {
     <Container maxWidth="xl">
       {/* Introducción */}
       <Box sx={{ mt: 4, mb: 4 }}>
-        <Typography variant="h1" component="h1" gutterBottom>Bienvenido a la Plataforma de Finanzas Argentinas</Typography>
+        <Typography variant="h4" component="h1" gutterBottom>Bienvenido a la Plataforma de Finanzas Argentinas</Typography>
         <Typography variant="body1">Aquí encontrarás información actualizada sobre el riesgo país, los tipos de cambio del dólar y las últimas noticias financieras de Argentina. Utiliza nuestra plataforma para tomar decisiones informadas y mantenerse al día con las fluctuaciones del mercado financiero.</Typography>
       </Box>
 
