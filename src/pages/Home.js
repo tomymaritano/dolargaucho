@@ -27,11 +27,9 @@ const HomePage = () => {
         ]);
         setRiesgoPais(riesgoResponse.data.valor);
         setNoticias(noticiasResponse.data.articles);
-
-        // Filtra y establece el precio del dólar oficial y blue
         const dolarOficial = dolarResponse.data.find(d => d.nombre === "Oficial");
         const dolarBlue = dolarResponse.data.find(d => d.nombre === "Blue");
-        setPrecioDolarOficial(dolarOficial ? `Compra ${dolarOficial.compra} / Venta  ${dolarOficial.venta}` : 'No disponible');
+        setPrecioDolarOficial(dolarOficial ? `Compra ${dolarOficial.compra} / Venta ${dolarOficial.venta}` : 'No disponible');
         setPrecioDolarBlue(dolarBlue ? `Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}` : 'No disponible');
       } catch (error) {
         console.error('Error al obtener los datos:', error);
@@ -44,6 +42,12 @@ const HomePage = () => {
 
   return (
     <Container maxWidth="xl">
+      {/* Introducción */}
+      <Box sx={{ mt: 4, mb: 4 }}>
+        <Typography variant="h1" component="h1" gutterBottom>Bienvenido a la Plataforma de Finanzas Argentinas</Typography>
+        <Typography variant="body1">Aquí encontrarás información actualizada sobre el riesgo país, los tipos de cambio del dólar y las últimas noticias financieras de Argentina. Utiliza nuestra plataforma para tomar decisiones informadas y mantenerse al día con las fluctuaciones del mercado financiero.</Typography>
+      </Box>
+
       <Grid container spacing={2}>
         {/* Riesgo País */}
         <Grid item xs={12} md={4}>
@@ -83,6 +87,7 @@ const HomePage = () => {
               <Grid item xs={12} md={3} key={index}>
                 <Box sx={{ p: 2, height: '100%', display: 'flex', flexDirection: 'column', background: '#F5F5F5' }}>
                   <Typography variant="h6" gutterBottom>{noticia.title}</Typography>
+                  <Typography variant="caption" gutterBottom>{noticia.publishedAt}</Typography>
                   <Typography variant="caption" color="textSecondary" sx={{ flexGrow: 1 }}>
                     {noticia.description}
                   </Typography>
@@ -97,7 +102,6 @@ const HomePage = () => {
           </Grid>
         )}
       </Box>
-
     </Container>
   );
 };
