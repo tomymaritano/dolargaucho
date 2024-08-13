@@ -20,7 +20,7 @@ const HomePage = () => {
               q: 'finanzas argentina',
               language: 'es',
               sortBy: 'publishedAt',
-              apiKey: process.env.REACT_APP_NEWS_API_KEY // Utiliza la variable de entorno aquí
+              apiKey: process.env.REACT_APP_API_KEY // Utiliza la variable de entorno aquí
             }
           }),
           axios.get('https://dolarapi.com/v1/dolares')
