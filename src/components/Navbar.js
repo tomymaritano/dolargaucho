@@ -5,18 +5,24 @@ import MenuIcon from '@mui/icons-material/Menu';
 import RssFeedIcon from '@mui/icons-material/RssFeed';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import PercentIcon from '@mui/icons-material/Percent';
 import logo from '../assets/images/logo.png';
 
 const pages = ['Home'];
 const indicesPages = [
-  { name: 'Inflación Mensual', path: '/inflacion-mensual' },
-  { name: 'Inflación Interanual', path: '/inflacion-interanual' },
-  { name: 'Índices UVA', path: '/indices-uva' },
-  { name: 'Riesgo País', path: '/riesgo-pais' },
+  { name: 'Inflación Mensual', path: '/inflacion-mensual', icon: <TrendingUpIcon /> },
+  { name: 'Inflación Interanual', path: '/inflacion-interanual', icon: <ShowChartIcon /> },
+  { name: 'Índices UVA', path: '/indices-uva', icon: <BarChartIcon /> },
+  { name: 'Riesgo País', path: '/riesgo-pais', icon: <AttachMoneyIcon /> },
 ];
 const tasasPages = [
-  { name: 'Tasas Plazo Fijo', path: '/tasas-plazo-fijo' },
-  { name: 'Tasas a 30 Días', path: '/tasas-30-dias' },
+  { name: 'Tasas Plazo Fijo', path: '/tasas-plazo-fijo', icon: <PercentIcon /> },
+  { name: 'Tasas a 30 Días', path: '/tasas-30-dias', icon: <PercentIcon /> },
 ];
 
 function ResponsiveNavbar() {
@@ -61,6 +67,10 @@ function ResponsiveNavbar() {
               sx={{
                 height: 40,
                 mr: 2,
+                transition: 'transform 0.3s',
+                '&:hover': {
+                  transform: 'scale(1.1)',
+                }
               }}
             />
           </Link>
@@ -93,6 +103,7 @@ function ResponsiveNavbar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
+                zIndex: 1300, // Asegura que esté por encima del AppBar
               }}
             >
               {pages.map((page) => (
@@ -102,21 +113,26 @@ function ResponsiveNavbar() {
               ))}
               <MenuItem onClick={handleOpenIndicesMenu}>
                 <Typography textAlign="center">Índices</Typography>
+                <ExpandMoreIcon sx={{ ml: 1 }} />
               </MenuItem>
               <Menu
                 id="indices-menu"
                 anchorEl={anchorElIndices}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'right',
+                  horizontal: 'left',
                 }}
                 open={Boolean(anchorElIndices)}
                 onClose={handleCloseIndicesMenu}
+                sx={{
+                  zIndex: 1300, // Asegura que esté por encima del AppBar
+                  mt: 1, // Margen para evitar superposición
+                }}
               >
                 {indicesPages.map((page) => (
                   <MenuItem
@@ -125,27 +141,33 @@ function ResponsiveNavbar() {
                     component={Link}
                     to={page.path}
                   >
-                    {page.name}
+                    {page.icon}
+                    <Typography sx={{ ml: 1 }}>{page.name}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
               <MenuItem onClick={handleOpenTasasMenu}>
                 <Typography textAlign="center">Tasas</Typography>
+                <ExpandMoreIcon sx={{ ml: 1 }} />
               </MenuItem>
               <Menu
                 id="tasas-menu"
                 anchorEl={anchorElTasas}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: 'bottom',
+                  horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'right',
+                  horizontal: 'left',
                 }}
                 open={Boolean(anchorElTasas)}
                 onClose={handleCloseTasasMenu}
+                sx={{
+                  zIndex: 1300, // Asegura que esté por encima del AppBar
+                  mt: 1, // Margen para evitar superposición
+                }}
               >
                 {tasasPages.map((page) => (
                   <MenuItem
@@ -154,7 +176,8 @@ function ResponsiveNavbar() {
                     component={Link}
                     to={page.path}
                   >
-                    {page.name}
+                    {page.icon}
+                    <Typography sx={{ ml: 1 }}>{page.name}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -167,33 +190,42 @@ function ResponsiveNavbar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', transition: 'color 0.3s' }}
                 component={Link}
                 to={`/${page.toLowerCase().replace(/ /g, '-')}`}
+                onMouseOver={(e) => e.currentTarget.style.color = 'lightgreen'}
+                onMouseOut={(e) => e.currentTarget.style.color = 'white'}
               >
                 {page}
               </Button>
             ))}
             <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2, color: 'white', display: 'flex', alignItems: 'center', transition: 'color 0.3s' }}
               onClick={handleOpenIndicesMenu}
+              onMouseOver={(e) => e.currentTarget.style.color = 'lightgreen'}
+              onMouseOut={(e) => e.currentTarget.style.color = 'white'}
             >
               Índices
+              <ExpandMoreIcon sx={{ ml: 1 }} />
             </Button>
             <Menu
               id="indices-menu"
               anchorEl={anchorElIndices}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElIndices)}
               onClose={handleCloseIndicesMenu}
+              sx={{
+                zIndex: 1300, // Asegura que esté por encima del AppBar
+                mt: 1, // Margen para evitar superposición
+              }}
             >
               {indicesPages.map((page) => (
                 <MenuItem
@@ -202,30 +234,38 @@ function ResponsiveNavbar() {
                   component={Link}
                   to={page.path}
                 >
-                  {page.name}
+                  {page.icon}
+                  <Typography sx={{ ml: 1 }}>{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
             <Button
-              sx={{ my: 2, color: 'white', display: 'block' }}
+              sx={{ my: 2, color: 'white', display: 'flex', alignItems: 'center', transition: 'color 0.3s' }}
               onClick={handleOpenTasasMenu}
+              onMouseOver={(e) => e.currentTarget.style.color = 'lightgreen'}
+              onMouseOut={(e) => e.currentTarget.style.color = 'white'}
             >
               Tasas
+              <ExpandMoreIcon sx={{ ml: 1 }} />
             </Button>
             <Menu
               id="tasas-menu"
               anchorEl={anchorElTasas}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElTasas)}
               onClose={handleCloseTasasMenu}
+              sx={{
+                zIndex: 1300, // Asegura que esté por encima del AppBar
+                mt: 1, // Margen para evitar superposición
+              }}
             >
               {tasasPages.map((page) => (
                 <MenuItem
@@ -234,7 +274,8 @@ function ResponsiveNavbar() {
                   component={Link}
                   to={page.path}
                 >
-                  {page.name}
+                  {page.icon}
+                  <Typography sx={{ ml: 1 }}>{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -242,13 +283,13 @@ function ResponsiveNavbar() {
 
           {/* Icons */}
           <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
-            <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
+            <IconButton sx={{ p: 0, mr: 2, color: 'white', transition: 'color 0.3s', '&:hover': { color: 'lightgreen' } }}>
               <RssFeedIcon />
             </IconButton>
-            <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
+            <IconButton sx={{ p: 0, mr: 2, color: 'white', transition: 'color 0.3s', '&:hover': { color: 'lightgreen' } }}>
               <MoreIcon />
             </IconButton>
-            <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
+            <IconButton sx={{ p: 0, mr: 2, color: 'white', transition: 'color 0.3s', '&:hover': { color: 'lightgreen' } }}>
               <LinkedInIcon />
             </IconButton>
           </Box>
