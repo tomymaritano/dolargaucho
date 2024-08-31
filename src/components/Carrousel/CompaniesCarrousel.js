@@ -46,7 +46,7 @@ const CompaniesCarousel = () => {
                 src={company.url} 
                 alt={company.name} 
                 style={{ 
-                  width: '340px', 
+                  width: '300px', 
                   height: '200px', 
                   objectFit: 'cover', 
                   borderRadius: '8px', 
