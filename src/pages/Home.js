@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box, Typography, Container, Grid, CircularProgress } from '@mui/material';
+import Cotizaciones from '../components/Cotizaciones/Cotizaciones';
 
 const HomePage = () => {
   const [riesgoPais, setRiesgoPais] = useState(null);
@@ -34,7 +35,7 @@ const HomePage = () => {
     <Container maxWidth="xl">
       {/* Introducción */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h1" component="h1" gutterBottom>Bienvenido a la Plataforma de Finanzas Argentinas</Typography>
+        <Typography variant="h1" component="h1" gutterBottom>Bienvenido a Dolar Gaucho</Typography>
         <Typography variant="body1">Aquí encontrarás información actualizada sobre el riesgo país, los tipos de cambio del dólar y las últimas noticias financieras de Argentina. Utiliza nuestra plataforma para tomar decisiones informadas y mantenerse al día con las fluctuaciones del mercado financiero.</Typography>
       </Box>
 
@@ -63,6 +64,9 @@ const HomePage = () => {
           </Box>
         </Grid>
       </Grid>
+      <Box>
+        <Cotizaciones />
+      </Box>
     </Container>
    
   );
