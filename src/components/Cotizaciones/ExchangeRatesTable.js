@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  CircularProgress,
-  useTheme,
-} from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Typography, useTheme } from '@mui/material';
+import Flag from 'react-flagkit';
 
-function ExchangeRates() {
+const countryCodes = {
+  USD: 'US', // Dólar (Estados Unidos)
+  EUR: 'EU', // Euro (Unión Europea)
+  BRL: 'BR', // Real Brasileño
+  CLP: 'CL', // Peso Chileno
+  UYU: 'UY', // Peso Uruguayo
+};
+
+function ExchangeRatesTable() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
@@ -22,7 +19,7 @@ function ExchangeRates() {
   useEffect(() => {
     const fetchExchangeRates = async () => {
       try {
-        const response = await axios.get('https://dolarapi.com/v1/cotizaciones');
+        const response = await axios.get(`https://dolarapi.com/v1/cotizaciones`);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching exchange rates:', error);
@@ -43,28 +40,26 @@ function ExchangeRates() {
   }
 
   return (
-    <Box sx={{ padding: { xs: 2, md: 4 }, backgroundColor: theme.palette.background.default, borderRadius: 2 }}>
-      <Typography variant="h4" sx={{ marginBottom: 3, textAlign: 'center', fontWeight: 'bold', color: theme.palette.text.primary }}>
-        Cotizaciones del Dólar
-      </Typography>
+    <Box sx={{ padding: { xs: 2, md: 4 } }}>
       <TableContainer component={Paper} sx={{ backgroundColor: 'gray.50', boxShadow: 'none', borderRadius: 2 }}>
         <Table aria-label="exchange rates table">
           <TableHead>
             <TableRow sx={{ backgroundColor: theme.palette.primary.main }}>
               <TableCell sx={{ fontWeight: 'bold', color: theme.palette.common.white }}>Moneda</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', color: theme.palette.common.white }}>Nombre</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', color: theme.palette.common.white }}>Casa</TableCell>
               <TableCell sx={{ fontWeight: 'bold', color: theme.palette.common.white }}>Compra</TableCell>
               <TableCell sx={{ fontWeight: 'bold', color: theme.palette.common.white }}>Venta</TableCell>
-              <TableCell sx={{ fontWeight: 'bold', color: theme.palette.common.white }}>Fecha de Actualización</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', color: theme.palette.common.white }}>Actualización</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((rate, index) => (
               <TableRow key={index} sx={{ '&:hover': { backgroundColor: theme.palette.action.hover } }}>
-                <TableCell>{rate.moneda}</TableCell>
-                <TableCell>{rate.nombre}</TableCell>
-                <TableCell>{rate.casa}</TableCell>
+                <TableCell>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Flag country={countryCodes[rate.moneda]} size={24} style={{ marginRight: '8px' }} />
+                    <Typography variant="body2">{rate.nombre}</Typography>
+                  </Box>
+                </TableCell>
                 <TableCell sx={{ color: theme.palette.success.main, fontWeight: 'bold' }}>
                   {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(rate.compra)}
                 </TableCell>
@@ -81,4 +76,4 @@ function ExchangeRates() {
   );
 }
 
-export default ExchangeRates;
+export default ExchangeRatesTable;
