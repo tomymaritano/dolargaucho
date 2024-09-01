@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Typography, Container, Grid, CircularProgress} from '@mui/material';
-import { Fade } from '@mui/material';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import { Box } from '@mui/material';
 import TweetsEmbed from '../components/Twitter/TweetsEmbed';
+import HeroSlider from '../components/Hero/HeroSlider';
+import VideoGallery from '../components/VideoGallery/VideoGallery';
+import DiscordGroups from '../components/Discord/Discord';
+import DolarGauchoInfo from '../components/DolarGauchoInfo/DolarGauchoInfo';
 import CompaniesCarousel from '../components/Carrousel/CompaniesCarrousel';
 
 const HomePage = () => {
@@ -35,109 +36,29 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
-    <Container maxWidth="lg">
+    <Box sx={{ margin: 5 }}>
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Bienvenido a Dolar Gaucho
-        </Typography>
-        <Typography variant="body1">
-          Información actualizada sobre el riesgo país, los tipos de cambio del dólar, y más.
-        </Typography>
+        <DolarGauchoInfo
+          loading={loading}
+          riesgoPais={riesgoPais}
+          precioDolarOficial={precioDolarOficial}
+          precioDolarBlue={precioDolarBlue}
+        />
       </Box>
 
-      <Grid container spacing={2}>
-        {/* Riesgo País */}
-        <Grid item xs={12} md={4}>
-          <Fade in={!loading}>
-            <Box
-              sx={{
-                textAlign: 'center',
-                padding: 3,
-                backgroundColor: 'gray.50',
-                borderRadius: 2,
-                border: '1px solid #e0e0e0', // Sutil borde gris
-              }}
-            >
-              <TrendingUpIcon sx={{ fontSize: 40, color: '#FF2626' }} />
-              <Typography variant="h6" color="textSecondary" sx={{ mt: 2 }}>
-                Riesgo País
-              </Typography>
-              {loading ? (
-                <CircularProgress />
-              ) : (
-                <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
-                  {riesgoPais || 'No disponible'}
-                </Typography>
-              )}
-            </Box>
-          </Fade>
-        </Grid>
-
-        {/* Dólar Oficial */}
-        <Grid item xs={12} md={4}>
-          <Fade in={!loading}>
-            <Box
-              sx={{
-                textAlign: 'center',
-                padding: 3,
-                backgroundColor: 'gray.50',
-                borderRadius: 2,
-                border: '1px solid #e0e0e0', // Sutil borde gris
-              }}
-            >
-              <AttachMoneyIcon sx={{ fontSize: 40, color: 'green' }} />
-              <Typography variant="h6" color="textSecondary" sx={{ mt: 2 }}>
-                Dólar Oficial
-              </Typography>
-              {loading ? (
-                <CircularProgress />
-              ) : (
-                <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                  {precioDolarOficial || 'No disponible'}
-                </Typography>
-              )}
-            </Box>
-          </Fade>
-        </Grid>
-
-        {/* Dólar Blue */}
-        <Grid item xs={12} md={4}>
-          <Fade in={!loading}>
-            <Box
-              sx={{
-                textAlign: 'center',
-                padding: 3,
-                backgroundColor: 'gray.50',
-                borderRadius: 2,
-                border: '1px solid #e0e0e0', // Sutil borde gris
-              }}
-            >
-              <AttachMoneyIcon sx={{ fontSize: 40, color: '#007BFF' }} />
-              <Typography variant="h6" color="textSecondary" sx={{ mt: 2 }}>
-                Dólar Blue
-              </Typography>
-              {loading ? (
-                <CircularProgress />
-              ) : (
-                <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                  {precioDolarBlue || 'No disponible'}
-                </Typography>
-              )}
-            </Box>
-          </Fade>
-        </Grid>
-      </Grid>
-      
-    </Container>
-<Box>
-  <CompaniesCarousel />
-</Box>
-   <Box>
-<TweetsEmbed />
-   </Box>
-    </>
-    
+      <Box sx={{ mb: 4 }}>
+        <VideoGallery />
+      </Box>
+      <Box sx={{ mb: 4 }}>
+        <DiscordGroups />
+      </Box>
+      <Box sx={{ mb: 4 }}>
+        <CompaniesCarousel />
+      </Box>
+      <Box sx={{ mb: 4 }}>
+        <TweetsEmbed />
+      </Box>
+    </Box>
   );
 };
 
