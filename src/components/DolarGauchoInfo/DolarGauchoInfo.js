@@ -8,7 +8,7 @@ const DolarGauchoInfo = ({ loading, riesgoPais, precioDolarOficial, precioDolarB
     return (
         <Container maxWidth="lg">
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h3" component="h1">
+                <Typography variant="h2" component="h1">
                     Bienvenido a Dolar Gaucho
                 </Typography>
                 <Typography variant="body1">
