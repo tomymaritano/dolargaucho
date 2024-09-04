@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Box, Typography, Grid, CircularProgress, Fade } from '@mui/material';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import HeroSlider from '../Hero/HeroSlider'
+// import HeroSlider from '../Hero/HeroSlider'
 
 const DolarGauchoInfo = ({ loading, riesgoPais, precioDolarOficial, precioDolarBlue }) => {
     return (
@@ -16,7 +16,7 @@ const DolarGauchoInfo = ({ loading, riesgoPais, precioDolarOficial, precioDolarB
                 </Typography>
             </Box>
             <Box sx={{ mb: 8 }}>
-                <HeroSlider />
+                {/* <HeroSlider /> */}
             </Box>
             <Grid container spacing={2}>
                 {/* Riesgo País */}

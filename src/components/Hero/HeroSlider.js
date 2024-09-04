@@ -8,9 +8,6 @@ const images = [
   { url: 'https://via.placeholder.com/800x400?text=Image+1', alt: 'Image 1' },
   { url: 'https://via.placeholder.com/800x400?text=Image+2', alt: 'Image 2' },
   { url: 'https://via.placeholder.com/800x400?text=Image+3', alt: 'Image 3' },
-  { url: 'https://via.placeholder.com/800x400?text=Image+4', alt: 'Image 4' },
-  { url: 'https://via.placeholder.com/800x400?text=Image+5', alt: 'Image 5' },
-  { url: 'https://via.placeholder.com/800x400?text=Image+6', alt: 'Image 6' },
 ];
 
 // Custom arrow components for the slider
