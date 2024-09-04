@@ -12,6 +12,8 @@ const Layout = ({ children }) => {
 
     const getPageTitle = () => {
         switch (location.pathname) {
+            case '/':
+                return 'Bienvenido a Dolar gaucho!';
             case '/home':
                 return 'Inicio';
             case '/dashboard':
