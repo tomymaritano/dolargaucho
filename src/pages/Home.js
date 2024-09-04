@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box } from '@mui/material';
 import TweetsEmbed from '../components/Twitter/TweetsEmbed';
-import VideoGallery from '../components/VideoGallery/VideoGallery';
-import DiscordGroups from '../components/Discord/Discord';
+// import VideoGallery from '../components/VideoGallery/VideoGallery';
+// import DiscordGroups from '../components/Discord/Discord';
 import DolarGauchoInfo from '../components/DolarGauchoInfo/DolarGauchoInfo';
-import CompaniesCarousel from '../components/Carrousel/CompaniesCarrousel';
+// import CompaniesCarousel from '../components/Carrousel/CompaniesCarrousel';
 
 const HomePage = () => {
   const [riesgoPais, setRiesgoPais] = useState(null);
@@ -45,7 +45,7 @@ const HomePage = () => {
         />
       </Box>
 
-      <Box sx={{ mb: 4 }}>
+      {/* <Box sx={{ mb: 4 }}>
         <VideoGallery />
       </Box>
       <Box sx={{ mb: 4 }}>
@@ -53,7 +53,7 @@ const HomePage = () => {
       </Box>
       <Box sx={{ mb: 4 }}>
         <CompaniesCarousel />
-      </Box>
+      </Box> */}
       <Box sx={{ mb: 4 }}>
         <TweetsEmbed />
       </Box>
