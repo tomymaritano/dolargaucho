@@ -18,7 +18,7 @@ import RentaVariable from './pages/RentaVariable';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/home" />} /> {/* Redirección */}
+      <Route path="/" element={<Layout><Home /></Layout>} />
       <Route path="/home" element={<Layout><Home /></Layout>} />
       <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
       <Route path="/profile" element={<Layout><Profile /></Layout>} />
