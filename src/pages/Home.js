@@ -22,7 +22,7 @@ const HomePage = () => {
         setRiesgoPais(riesgoResponse.data.valor);
 
         const dolarResponse = await axios.get('https://dolarapi.com/v1/dolares');
-        const dolarOficial = dolarResponse.data.find(d => d.nombre === "Dólar Oficial");
+        const dolarOficial = dolarResponse.data.find(d => d.nombre === "Oficial");
         const dolarBlue = dolarResponse.data.find(d => d.nombre === "Blue");
         setPrecioDolarOficial(dolarOficial ? `Compra ${dolarOficial.compra} / Venta ${dolarOficial.venta}` : 'No disponible');
         setPrecioDolarBlue(dolarBlue ? `Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}` : 'No disponible');
