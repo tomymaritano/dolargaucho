@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box } from '@mui/material';
 import TweetsEmbed from '../components/Twitter/TweetsEmbed';
-import HeroSlider from '../components/Hero/HeroSlider';
 import VideoGallery from '../components/VideoGallery/VideoGallery';
 import DiscordGroups from '../components/Discord/Discord';
 import DolarGauchoInfo from '../components/DolarGauchoInfo/DolarGauchoInfo';
