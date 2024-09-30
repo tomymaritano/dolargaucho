@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import InflacionMensual from './pages/InflacionMensual';
 import InflacionInteranual from './pages/InflacionInteranual';
@@ -20,7 +19,6 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Layout><Home /></Layout>} />
       <Route path="/home" element={<Layout><Home /></Layout>} />
-      <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
       <Route path="/profile" element={<Layout><Profile /></Layout>} />
       <Route path="/inflacion-mensual" element={<Layout><InflacionMensual /></Layout>} />
       <Route path="/inflacion-interanual" element={<Layout><InflacionInteranual /></Layout>} />

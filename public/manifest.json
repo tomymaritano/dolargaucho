@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Dolar Gaucho Web APP",
+  "name": "Aplicación para seguir la cotización del dólar en Argentina",
   "icons": [
     {
       "src": "favicon.ico",
