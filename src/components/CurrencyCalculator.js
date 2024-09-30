@@ -56,7 +56,7 @@ const CurrencyCalculator = () => {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, margin: '0 auto', padding: 4, borderRadius: 2, backgroundColor: '#fff', boxShadow: 3 }}>
+    <Box sx={{ maxWidth: 400, margin: '0 auto', padding: 4, borderRadius: 2, border: 1, backgroundColor: '#fff' }}>
       <Typography variant="h5" gutterBottom sx={{ textAlign: 'center', fontWeight: 'bold', color: '#333' }}>
         Calculadora de Divisas
       </Typography>
@@ -100,7 +100,7 @@ const CurrencyCalculator = () => {
       </Button>
 
       {result !== null && (
-        <Typography variant="h6" sx={{ mt: 2, textAlign: 'center', color: '#333' }}>
+        <Typography variant="h3" sx={{ mt: 2, textAlign: 'center', color: '#333' }}>
           Resultado: ${result}
         </Typography>
       )}

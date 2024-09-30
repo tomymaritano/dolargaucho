@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box } from '@mui/material';
-import TweetsEmbed from '../components/Twitter/TweetsEmbed';
-// import VideoGallery from '../components/VideoGallery/VideoGallery';
-// import DiscordGroups from '../components/Discord/Discord';
 import DolarGauchoInfo from '../components/DolarGauchoInfo/DolarGauchoInfo';
-// import CompaniesCarousel from '../components/Carrousel/CompaniesCarrousel';
-
 const HomePage = () => {
   const [riesgoPais, setRiesgoPais] = useState(null);
-  const [precioDolarOficial, setPrecioDolarOficial] = useState(null);
-  const [precioDolarBlue, setPrecioDolarBlue] = useState(null);
+  const [dolares, setDolares] = useState({
+    oficial: null,
+    blue: null,
+    contadoConLiquidacion: null,
+    tarjeta: null,
+    cripto: null,
+    mayorista: null,
+    bolsa: null
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,10 +23,24 @@ const HomePage = () => {
         setRiesgoPais(riesgoResponse.data.valor);
 
         const dolarResponse = await axios.get('https://dolarapi.com/v1/dolares');
-        const dolarOficial = dolarResponse.data.find(d => d.nombre === "Oficial");
-        const dolarBlue = dolarResponse.data.find(d => d.nombre === "Blue");
-        setPrecioDolarOficial(dolarOficial ? `Compra ${dolarOficial.compra} / Venta ${dolarOficial.venta}` : 'No disponible');
-        setPrecioDolarBlue(dolarBlue ? `Compra ${dolarBlue.compra} / Venta ${dolarBlue.venta}` : 'No disponible');
+        
+        const oficial = dolarResponse.data.find(d => d.nombre === "Oficial") || {};
+        const blue = dolarResponse.data.find(d => d.nombre === "Blue") || {};
+        const contadoConLiquidacion = dolarResponse.data.find(d => d.nombre === "Contado con liquidación") || {};
+        const tarjeta = dolarResponse.data.find(d => d.nombre === "Tarjeta") || {};
+        const cripto = dolarResponse.data.find(d => d.nombre === "Cripto") || {};
+        const mayorista = dolarResponse.data.find(d => d.nombre === "Mayorista") || {};
+        const bolsa = dolarResponse.data.find(d => d.nombre === "Bolsa") || {};
+
+        setDolares({
+          oficial: oficial ? `Compra ${oficial.compra} / Venta ${oficial.venta}` : 'No disponible',
+          blue: blue ? `Compra ${blue.compra} / Venta ${blue.venta}` : 'No disponible',
+          contadoConLiquidacion: contadoConLiquidacion ? `Compra ${contadoConLiquidacion.compra} / Venta ${contadoConLiquidacion.venta}` : 'No disponible',
+          tarjeta: tarjeta ? `Compra ${tarjeta.compra} / Venta ${tarjeta.venta}` : 'No disponible',
+          cripto: cripto ? `Compra ${cripto.compra} / Venta ${cripto.venta}` : 'No disponible',
+          mayorista: mayorista ? `Compra ${mayorista.compra} / Venta ${mayorista.venta}` : 'No disponible',
+          bolsa: bolsa ? `Compra ${bolsa.compra} / Venta ${bolsa.venta}` : 'No disponible',
+        });
       } catch (error) {
         console.error('Error al obtener los datos generales:', error);
       }
@@ -35,28 +51,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Box sx={{ margin: 5 }}>
-      <Box sx={{ mb: 4 }}>
+    <Box sx={{ margin: 0 }}>
         <DolarGauchoInfo
           loading={loading}
           riesgoPais={riesgoPais}
-          precioDolarOficial={precioDolarOficial}
-          precioDolarBlue={precioDolarBlue}
+          dolares={dolares}
         />
-      </Box>
-
-      {/* <Box sx={{ mb: 4 }}>
-        <VideoGallery />
-      </Box>
-      <Box sx={{ mb: 4 }}>
-        <DiscordGroups />
-      </Box>
-      <Box sx={{ mb: 4 }}>
-        <CompaniesCarousel />
-      </Box> */}
-      <Box sx={{ mb: 4 }}>
-        <TweetsEmbed />
-      </Box>
     </Box>
   );
 };

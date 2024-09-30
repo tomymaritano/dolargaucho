@@ -5,7 +5,6 @@ import Navbar from './Navbar';
 import CryptoMarquee from './CryptoMarquee';
 import Hero from './Hero';
 import Footer from './Footer';
-import ExchangeRatesMarquee from './ExchangeRatesMarquee';
 
 const Layout = ({ children }) => {
     const location = useLocation();
@@ -42,10 +41,9 @@ const Layout = ({ children }) => {
 
     return (
         <>
-            <CryptoMarquee />
             <Navbar />
             <Hero title={getPageTitle()} />
-            <ExchangeRatesMarquee />
+            <CryptoMarquee />
             <Container maxWidth="xl">
                 <Box mt={4} py={4} sx={{ bgcolor: 'background.paper', borderRadius: 2, boxShadow: 0 }}>
                     {children}

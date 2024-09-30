@@ -146,22 +146,6 @@ function ResponsiveNavbar() {
                   </MenuItem>
                 ))}
               </Menu>
-              {/* Social Icons */}
-              <MenuItem>
-                <IconButton sx={{ p: 0, color: 'white' }}>
-                  <RssFeedIcon />
-                </IconButton>
-              </MenuItem>
-              <MenuItem>
-                <IconButton sx={{ p: 0, color: 'white' }}>
-                  <MoreIcon />
-                </IconButton>
-              </MenuItem>
-              <MenuItem>
-                <IconButton sx={{ p: 0, color: 'white' }}>
-                  <LinkedInIcon />
-                </IconButton>
-              </MenuItem>
             </Menu>
           </Box>
 
