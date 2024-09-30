@@ -4,9 +4,6 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import RssFeedIcon from '@mui/icons-material/RssFeed';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import MoreIcon from '@mui/icons-material/MoreVert';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
@@ -69,7 +66,9 @@ function ResponsiveNavbar() {
             />
           </Link>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1 }} />
+
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-end' }}>
             <IconButton
               size="large"
               aria-label="open drawer"
@@ -176,19 +175,6 @@ function ResponsiveNavbar() {
               Tasas
               <ExpandMoreIcon sx={{ ml: 1 }} />
             </Button>
-          </Box>
-
-          {/* Desktop Social Icons */}
-          <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center' }}>
-            <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
-              <RssFeedIcon />
-            </IconButton>
-            <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
-              <MoreIcon />
-            </IconButton>
-            <IconButton sx={{ p: 0, mr: 2, color: 'white' }}>
-              <LinkedInIcon />
-            </IconButton>
           </Box>
         </Toolbar>
       </Container>
