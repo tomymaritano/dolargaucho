@@ -5,13 +5,13 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const DolarGauchoInfo = ({ loading, riesgoPais, dolares }) => {
     const dolarTipos = [
-        { nombre: 'Dólar Oficial', valor: dolares.oficial, color: 'green' },
-        { nombre: 'Dólar Blue', valor: dolares.blue, color: '#007BFF' },
-        { nombre: 'Dólar Contado con Liquidación', valor: dolares.contadoConLiquidacion, color: '#FF5733' },
-        { nombre: 'Dólar Tarjeta', valor: dolares.tarjeta, color: '#FFC300' },
-        { nombre: 'Dólar Cripto', valor: dolares.cripto, color: '#28B463' },
-        { nombre: 'Dólar Mayorista', valor: dolares.mayorista, color: '#884EA0' },
-        { nombre: 'Dólar Bolsa', valor: dolares.bolsa, color: '#1F618D' },
+        { nombre: 'Oficial', valor: dolares.oficial, color: 'green' },
+        { nombre: 'Blue', valor: dolares.blue, color: '#007BFF' },
+        { nombre: 'Contado con Liquidación', valor: dolares.contadoConLiquidacion, color: '#FF5733' },
+        { nombre: 'Tarjeta', valor: dolares.tarjeta, color: '#FFC300' },
+        { nombre: 'Cripto', valor: dolares.cripto, color: '#28B463' },
+        { nombre: 'Mayorista', valor: dolares.mayorista, color: '#884EA0' },
+        { nombre: 'Bolsa', valor: dolares.bolsa, color: '#1F618D' },
     ];
 
     return (

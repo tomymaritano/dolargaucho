@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     const getPageTitle = () => {
         switch (location.pathname) {
             case '/':
-                return 'Bienvenido a Dolar gaucho!';
+                return 'Consulta el valor del dolar!';
             case '/home':
                 return 'Inicio';
             case '/dashboard':
